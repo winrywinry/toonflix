@@ -1,22 +1,50 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  var player = Player('nico');
   runApp(App());
 }
 
-class Player {
-  String name;
-  Player(this.name);
+class App extends StatefulWidget {
+  @override
+  State<App> createState() => _AppState();
 }
 
-class App extends StatelessWidget {
+
+class _AppState extends State<App> {
+  int counter = 0;
+
+  void onClicked() {
+    setState(() {
+      counter = counter + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(centerTitle: false, title: Text('Hello flutter')),
-        body: Center(child: Text('Hello World!')),
+        backgroundColor: const Color(0xFFF4EDDB),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Click Count', style: TextStyle(
+                fontSize: 30,
+              ),
+              ),
+              Text('$counter', style: const TextStyle(
+                fontSize: 30
+              ),
+              ),
+              IconButton(
+                  iconSize: 40,
+                  onPressed: onClicked,
+                  icon: const Icon(Icons.add_box_rounded
+                  ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
